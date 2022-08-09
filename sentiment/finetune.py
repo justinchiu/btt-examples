@@ -32,34 +32,35 @@ from transformers import TrainingArguments, Trainer
 # for us. Make sure that the tokenizer used aligns with the model you end up using.
 MODELNAME = "bert-base-cased"
 tokenizer = AutoTokenizer.from_pretrained(MODELNAME)
+# For more details, see https://huggingface.co/docs/transformers/preprocessing.
 
 # This function will be applied to every example in the dataset.
 def tokenize_function(examples):
     # Our input is the text and entity.
     # In order to combine these two, we want to concatenate them by adding the [SEP]
     # separater token between them.
-    # All inputs are assumed to start with the special [CLS] token,
-    # a relic we inherit from pretrained models such as BERT.
     batch_sentences = [
-        f"[CLS] {x} [SEP] {y}"
+        f"{x} [SEP] {y}"
         for x,y in zip(examples["text"], examples["entity"])
     ]
     return tokenizer(
         batch_sentences,
-        padding="max_length",
-        truncation=True,
+        padding = True,
+        truncation = True,
     )
 
-# We can apply the tokenization function to all examples in our dataset here.
-tokenized_datasets = (dataset
-    .map(tokenize_function, batched=True)
-    # We have to encode the label column, which was originally just a string
-    .class_encode_column("label")
-)
+# We have to encode the label column, which was originally just a string
+datasets = dataset.class_encode_column("label")
+
 # Use a subsampled small training dataset to speed things up
-small_train_dataset = tokenized_datasets["train"].shuffle(seed=42).select(range(1000))
+BATCHSIZE = 32
+small_train_dataset = (datasets["train"]
+    .shuffle(seed=42)
+    .select(range(BATCHSIZE*300))
+    .map(tokenize_function, batched=True, batch_size=BATCHSIZE*1000)
+)
 # remove the call to select to run on the full training data, which may take a long time
-eval_dataset = tokenized_datasets["validation"]
+eval_dataset = datasets["validation"].map(tokenize_function, batched=True, batch_size=BATCHSIZE*1000)
 
 num_labels = np.unique(dataset["train"]["label"]).shape[0]
 model = AutoModelForSequenceClassification.from_pretrained(MODELNAME, num_labels=num_labels)
@@ -77,15 +78,21 @@ def compute_metrics(eval_pred):
 # HuggingFace trainer + arguments
 # See https://huggingface.co/docs/transformers/v4.21.1/en/main_classes/trainer#transformers.Trainer
 # for details.
-training_args = TrainingArguments(output_dir="test_trainer", evaluation_strategy="epoch")
+training_args = TrainingArguments(
+    output_dir = "test_trainer",
+    evaluation_strategy = "epoch",
+    per_device_train_batch_size = BATCHSIZE,
+    per_device_eval_batch_size = BATCHSIZE,
+)
 trainer = Trainer(
     model=model,
     args=training_args,
     train_dataset = small_train_dataset,
     eval_dataset = eval_dataset,
-    compute_metrics=compute_metrics,
+    compute_metrics = compute_metrics,
 )
 # Running this will fine-tune the model
 trainer.train()
 
+trainer.evaluate()
 # Be sure to check out the training graphs on the wandb link!
