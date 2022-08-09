@@ -123,5 +123,7 @@ trainer.evaluate()
 # https://www.kaggle.com/code/katearb/sentiment-analysis-in-twitter-93-test-acc
 # It's possible that the model needs more tuning (which we will not be doing due to the
 # model being too slow).
-# We will investigate this in bagofwords.py.
-# Hunch: not tokenizing emojis properly.
+ 
+# However, hunch: the tokenizer is not tokenizing emojis properly.
+# We will investigate this further in bagofwords.py.
+# (This file takes too long to run)
