@@ -85,7 +85,7 @@ trainer = Trainer(
     eval_dataset = eval_dataset,
     compute_metrics=compute_metrics,
 )
-# Running this will fine-tun the model
+# Running this will fine-tune the model
 trainer.train()
 
 # Be sure to check out the training graphs on the wandb link!
