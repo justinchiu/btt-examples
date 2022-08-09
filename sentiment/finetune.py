@@ -124,3 +124,4 @@ trainer.evaluate()
 # It's possible that the model needs more tuning (which we will not be doing due to the
 # model being too slow).
 # We will investigate this in bagofwords.py.
+# Hunch: not tokenizing emojis properly.
