@@ -11,6 +11,7 @@ We will implement
 * A majority class baseline (TODO)
 * A bag-of-words baseline with different word representations (TODO)
 * A fine-tuned BERT model
+ 
 and run through the data preprocessing necessary for each of these.
 
 ## Dependencies
