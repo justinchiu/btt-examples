@@ -103,6 +103,7 @@ training_args = TrainingArguments(
     evaluation_strategy = "epoch",
     per_device_train_batch_size = BATCHSIZE,
     per_device_eval_batch_size = BATCHSIZE,
+    learning_rate = 1e-5,
 )
 trainer = Trainer(
     model=model,
@@ -116,3 +117,10 @@ trainer.train()
 
 trainer.evaluate()
 # Be sure to check out the training graphs on the wandb link!
+# An example run: https://wandb.ai/justinchiu/huggingface/runs/2he8fz5b/overview
+
+# Interestingly, this does worse than some simple baselines:
+# https://www.kaggle.com/code/katearb/sentiment-analysis-in-twitter-93-test-acc
+# It's possible that the model needs more tuning (which we will not be doing due to the
+# model being too slow).
+# We will investigate this in bagofwords.py.
