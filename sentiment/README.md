@@ -8,7 +8,7 @@ competition on Kaggle, which also contains some examples.
 We provide the extracted csv files here: `twitter_training.csv` and `twitter_validation.csv`.
 
 We will implement
-* A majority class baseline (TODO)
+* A majority class baseline: `python baseline.py`
 * A bag-of-words baseline with different word representations (TODO)
 * A fine-tuned BERT model: `python finetune.py`
  
