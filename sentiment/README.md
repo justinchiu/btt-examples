@@ -15,11 +15,12 @@ We will implement
 and run through the data preprocessing necessary for each of these.
 
 ## Dependencies
+We highly recommend first installing [Anaconda](https://docs.anaconda.com/anaconda/install/)
+and using a
+[virtual environment](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html).
+
 * [Spacy](https://spacy.io/usage)
 * [transformers](https://huggingface.co/docs/transformers/installation)
 * [datasets](https://huggingface.co/docs/datasets/installation)
 * numpy
 
-We highly recommend installing [Anaconda](https://docs.anaconda.com/anaconda/install/)
-and using a
-[virtual environment](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html).
