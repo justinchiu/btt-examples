@@ -19,3 +19,7 @@ and run through the data preprocessing necessary for each of these.
 * [transformers](https://huggingface.co/docs/transformers/installation)
 * [datasets](https://huggingface.co/docs/datasets/installation)
 * numpy
+
+We highly recommend installing [Anaconda](https://docs.anaconda.com/anaconda/install/)
+and using a
+[virtual environment](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html).
