@@ -10,7 +10,7 @@ We provide the extracted csv files here: `twitter_training.csv` and `twitter_val
 We will implement
 * A majority class baseline (TODO)
 * A bag-of-words baseline with different word representations (TODO)
-* A fine-tuned BERT model
+* A fine-tuned BERT model: `python finetune.py`
  
 and run through the data preprocessing necessary for each of these.
 
