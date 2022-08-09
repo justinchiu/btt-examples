@@ -30,7 +30,13 @@ from transformers import TrainingArguments, Trainer
 
 # Loads a pretrained tokenizer that preprocesses (tokenize, vectorize) words
 # for us. Make sure that the tokenizer used aligns with the model you end up using.
-MODELNAME = "bert-base-cased"
+
+# There are a variety of pretrained large language models available for use.
+# We use a model that was 1) pretrained on a large amount of data (called RoBERTA)
+# that was also 2) fine-tuned on a pre-existing sentiment task.
+# Since this model was already fine-tuned on sentiment, we hope that it will
+# adapt very quickly to our new sentiment task.
+MODELNAME = "siebert/sentiment-roberta-large-english"
 tokenizer = AutoTokenizer.from_pretrained(MODELNAME)
 # For more details, see https://huggingface.co/docs/transformers/preprocessing.
 
@@ -52,18 +58,32 @@ def tokenize_function(examples):
 # We have to encode the label column, which was originally just a string
 datasets = dataset.class_encode_column("label")
 
-# Use a subsampled small training dataset to speed things up
-BATCHSIZE = 32
+# Use a subsampled small training dataset to speed up training.
+# The model is very large and slow to finetune.
+# Please see other models for cheaper approaches.
+BATCHSIZE = 16
 small_train_dataset = (datasets["train"]
     .shuffle(seed=42)
-    .select(range(BATCHSIZE*300))
-    .map(tokenize_function, batched=True, batch_size=BATCHSIZE*1000)
+    .select(range(BATCHSIZE*900))
+    .map(
+        tokenize_function,
+        batched = True,
+        batch_size = datasets["train"].shape[0],
+    )
 )
 # remove the call to select to run on the full training data, which may take a long time
-eval_dataset = datasets["validation"].map(tokenize_function, batched=True, batch_size=BATCHSIZE*1000)
+eval_dataset = datasets["validation"].map(
+    tokenize_function,
+    batched = True,
+    batch_size = datasets["validation"].shape[0],
+)
 
 num_labels = np.unique(dataset["train"]["label"]).shape[0]
-model = AutoModelForSequenceClassification.from_pretrained(MODELNAME, num_labels=num_labels)
+model = AutoModelForSequenceClassification.from_pretrained(
+    MODELNAME,
+    num_labels = num_labels,
+    ignore_mismatched_sizes = True,
+)
 
 # Evaluate the model with accuracy of the top-1 model prediction,
 # as stated on the Kaggle page.
