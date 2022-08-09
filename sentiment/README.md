@@ -1,9 +1,9 @@
 # Sentiment analysis example
-We give a sentiment-analysis example based on tweets.
+In this repo we will run through sentiment analysis using a variety of approaches.
 Our goal is to classify the sentiment of a tweet with respect to a particular entity.
 We will use the data from the
 [Twitter Sentiment Analysis](https://www.kaggle.com/datasets/jp797498e/twitter-entity-sentiment-analysis)
-competition on Kaggle, which also contains some examples.
+competition on Kaggle, which also contains some data examples.
 
 We provide the extracted csv files here: `twitter_training.csv` and `twitter_validation.csv`.
 
