@@ -5,17 +5,16 @@ We will use the data from the
 [Twitter Sentiment Analysis](https://www.kaggle.com/datasets/jp797498e/twitter-entity-sentiment-analysis)
 competition on Kaggle, which also contains some data examples.
 
-We provide the extracted csv files here: `twitter_training.csv` and `twitter_validation.csv`.
+The extracted csv files are given in: `twitter_training.csv` and `twitter_validation.csv`.
 
-We will implement
+We implement
 * A majority class baseline: `python majority.py`
-* A (very slow) fine-tuned [RoBERTa](https://arxiv.org/abs/1907.11692) model: `python finetune.py`
-* A bag-of-words model with different word representations (TODO)
- 
-and run through the data preprocessing necessary for each of these.
-
-For a great example of analysis, see this [Kaggle notebook](https://www.kaggle.com/code/katearb/sentiment-analysis-in-twitter-93-test-acc),
-which we will follow in `bagofwords.py`.
+* A (very slow) fine-tuned [RoBERTa](https://arxiv.org/abs/1907.11692) model: `python finetune.py`,
+    which we find to be out-performed by the models trained this
+    [Kaggle notebook](https://www.kaggle.com/code/katearb/sentiment-analysis-in-twitter-93-test-acc).
+* A bag-of-words model with different word representations: `python bagofwords.py`.
+    Here we reproduce the analysis from the Kaggle notebook in order to debug
+    the fine-tuned RoBERTa model.
 
 ## Dependencies
 We highly recommend first installing [Anaconda](https://docs.anaconda.com/anaconda/install/)
