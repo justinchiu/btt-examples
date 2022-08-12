@@ -64,7 +64,7 @@ datasets = dataset.class_encode_column("label")
 BATCHSIZE = 16
 small_train_dataset = (datasets["train"]
     .shuffle(seed=42)
-    .select(range(BATCHSIZE*900))
+    #.select(range(BATCHSIZE*900))
     .map(
         tokenize_function,
         batched = True,
@@ -104,6 +104,8 @@ training_args = TrainingArguments(
     per_device_train_batch_size = BATCHSIZE,
     per_device_eval_batch_size = BATCHSIZE,
     learning_rate = 1e-5,
+    warmup_steps = 500,
+    num_train_epochs = 5,
 )
 trainer = Trainer(
     model=model,
@@ -117,10 +119,6 @@ trainer.train()
 
 trainer.evaluate()
 # Be sure to check out the training graphs on the wandb link!
-# An example run: https://wandb.ai/justinchiu/huggingface/runs/2he8fz5b/overview
+# An example run: https://wandb.ai/justinchiu/huggingface/runs/1fhaix7u
+# gets 98% validation accuracy
 
-# Interestingly, this does worse than some simple baselines:
-# https://www.kaggle.com/code/katearb/sentiment-analysis-in-twitter-93-test-acc
-# It's likely that the model needs more tuning (which we will not be doing due to the
-# model being too slow).
- 
