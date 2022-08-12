@@ -17,6 +17,8 @@ We implement
 * (TBD) A bag-of-words model with different word representations: `python bagofwords.py`.
     We reproduce the results of this [Kaggle notebook](https://www.kaggle.com/code/katearb/sentiment-analysis-in-twitter-93-test-acc).
 
+See the Results section below for validation accuracies.
+
 ## Dependencies
 We highly recommend first installing [Anaconda](https://docs.anaconda.com/anaconda/install/)
 and using a
