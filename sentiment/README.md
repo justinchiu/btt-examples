@@ -20,6 +20,11 @@ We implement
     We reproduce the results of this
     [Kaggle notebook](https://www.kaggle.com/code/katearb/sentiment-analysis-in-twitter-93-test-acc),
     which reported 91% validation accuracy with a LR baseline and 93% with a neural bag of words model.
+    Note: We implemented the fine-tuned RoBERTa model first before this baseline,
+    even though the model itself is more complex,
+    because we expected it to both have better performance and be easier to code.
+    Less complicated models that rely on bag of words representations are often
+    very sensitive to preprocessing, requiring a lot of tuning and care.
 
 See the Results section below for a summary of validation accuracies.
 
