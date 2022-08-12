@@ -13,7 +13,8 @@ We implement
 * A fine-tuned [RoBERTa](https://arxiv.org/abs/1907.11692) model: `python finetune.py`.
     This model requires a lot of compute to run, and took around 7 hours to train on a
     GPU with a batch size of 16.
-    This model obtained 98% validation accuracy.
+    This model obtained 98% validation accuracy on the full training data.
+    The performance of the model can be significantly worse witout using the full data.
 * (TBD) A bag-of-words model with different word representations: `python bagofwords.py`.
     We reproduce the results of this
     [Kaggle notebook](https://www.kaggle.com/code/katearb/sentiment-analysis-in-twitter-93-test-acc),
