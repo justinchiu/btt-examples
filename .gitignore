@@ -1,2 +1,3 @@
 wandb/
 test_trainer/
+debug*
