@@ -13,13 +13,13 @@ We implement
 * A fine-tuned [RoBERTa](https://arxiv.org/abs/1907.11692) model: `python finetune.py`.
     This model requires a lot of compute to run, and took around 7 hours to train on a
     GPU with a batch size of 16.
-    The performance is quite good though, see the Results section.
+    This model obtained 98% validation accuracy.
 * (TBD) A bag-of-words model with different word representations: `python bagofwords.py`.
     We reproduce the results of this
     [Kaggle notebook](https://www.kaggle.com/code/katearb/sentiment-analysis-in-twitter-93-test-acc),
     which reported 91% validation accuracy with a LR baseline and 93% with a neural bag of words model.
 
-See the Results section below for validation accuracies.
+See the Results section below for a summary of validation accuracies.
 
 ## Dependencies
 We highly recommend first installing [Anaconda](https://docs.anaconda.com/anaconda/install/)
