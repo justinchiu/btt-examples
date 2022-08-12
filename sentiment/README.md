@@ -24,3 +24,10 @@ and using a
 * [datasets](https://huggingface.co/docs/datasets/installation)
 * numpy
 
+## Results
+| Model                           | Validation Accuracy |
+| ------------------------------- | ------------------- |
+| Majority class                  |                 26% |
+| Entity-dependent majority class |                 41% |
+| Fine-tuned (sentiment) RoBERTa  |                 98% |
+| LR on mean-pooled GloVe         |                 TBD | 
