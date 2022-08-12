@@ -15,7 +15,9 @@ We implement
     GPU with a batch size of 16.
     The performance is quite good though, see the Results section.
 * (TBD) A bag-of-words model with different word representations: `python bagofwords.py`.
-    We reproduce the results of this [Kaggle notebook](https://www.kaggle.com/code/katearb/sentiment-analysis-in-twitter-93-test-acc).
+    We reproduce the results of this
+    [Kaggle notebook](https://www.kaggle.com/code/katearb/sentiment-analysis-in-twitter-93-test-acc),
+    which reported 91% validation accuracy with a LR baseline and 93% with a neural bag of words model.
 
 See the Results section below for validation accuracies.
 
