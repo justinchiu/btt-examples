@@ -8,10 +8,13 @@ competition on Kaggle, which also contains some data examples.
 The extracted csv files are given in: `twitter_training.csv` and `twitter_validation.csv`.
 
 We implement
-* A majority class baseline: `python majority.py`
-* A (very slow) fine-tuned [RoBERTa](https://arxiv.org/abs/1907.11692) model: `python finetune.py`,
-    which gets 98% accuracy once trained on the full training data.
-* A bag-of-words model with different word representations: `python bagofwords.py`.
+* A majority class baseline: `python majority.py`.
+    We also run an entity-dependent majority class baseline.
+* A fine-tuned [RoBERTa](https://arxiv.org/abs/1907.11692) model: `python finetune.py`.
+    This model requires a lot of compute to run, and took around 7 hours to train on a
+    GPU with a batch size of 16.
+    The performance is quite good though, see the Results section.
+* (TBD) A bag-of-words model with different word representations: `python bagofwords.py`.
     We reproduce the results of this [Kaggle notebook](https://www.kaggle.com/code/katearb/sentiment-analysis-in-twitter-93-test-acc).
 
 ## Dependencies
